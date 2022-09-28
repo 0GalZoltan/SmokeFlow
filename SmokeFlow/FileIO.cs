@@ -24,6 +24,11 @@
 
 			return result;
 		}
+		/// <summary>
+		/// Reads an input file and creates and fills an IntFiel2d object from it
+		/// </summary>
+		/// <param name="filePath">Should be a text file contains fixed-length lines with only digits</param>
+		/// <returns>filled IntField2d</returns>
 		public static IntField2d ReadFieldFromFile( string filePath )
 		{
 			using StreamReader streamReader = new StreamReader( filePath );
@@ -46,6 +51,12 @@
 
 			return intField;
 		}
+		/// <summary>
+		/// Walks throught an IntField2d's local minimum points and writes them into an output file.
+		/// Line format: {x};{y};{risklevel}
+		/// </summary>
+		/// <param name="filePath">file name for used output file</param>
+		/// <param name="intField"></param>
 		public static void WriteMinimumPointsToFile( string filePath, IntField2d intField )
 		{
 			using StreamWriter streamWriter = new StreamWriter( filePath );
@@ -55,6 +66,11 @@
 				streamWriter.WriteLine( "{0};{1};{2}", coordinate.x, coordinate.y, intField[coordinate.x, coordinate.y] + 1 );
 			}
 		}
+		/// <summary>
+		/// Walks throught an IntField2d's local minimum points and writes them into the console.
+		/// Line format: {x};{y};{risklevel}
+		/// </summary>
+		/// <param name="intField"></param>
 		public static void WriteMinimumPointsToConsole( IntField2d intField )
 		{
 			foreach( IntField2d.Coordinate coordinate in intField.GetLocalMinimumPoints() )
